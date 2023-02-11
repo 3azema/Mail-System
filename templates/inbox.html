@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Emails
+{% endblock %}
+
+{% block main %}
+    <div>
+        <h3>Sent Emails</h3>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Sender</th>
+                    <th>Subject</th>
+                    <th>Timestamp</th>
+                    <th>View Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for email in emails %}
+                <tr>
+                    <td>{{ email.sender }}</td>
+                    <td>{{ email.subject }}</td>
+                    <td>{{ email.timestamp }}</td>
+                    <td>
+                        <form action="/email" method="post">
+                            <input type="hidden" name="emailId" value="{{ email.id }}">
+                            <input type="submit" class="btn btn-info" value="View Email">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}   

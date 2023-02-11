@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sent
+{% endblock %}
+
+{% block main %}
+    <form action="/sent" method="get">
+        <div>
+            <h3>Sent Emails</h3>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Recipient</th>
+                        <th>Subject</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in email %}
+                    <tr onclick="window.location='/email';">
+                        <td>{{ row.recipient }}</td>
+                        <td>{{ row.subject }}</td>
+                        <td>{{ row.timestamp }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </form>
+{% endblock %}
